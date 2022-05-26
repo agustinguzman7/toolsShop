@@ -3,7 +3,12 @@
   text-align: center;
   
 }
-
+.ItemListContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

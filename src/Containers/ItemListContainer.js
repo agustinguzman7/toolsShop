@@ -2,28 +2,32 @@ import React, { useEffect, useState } from "react";
 import ItemList from "../components/ItemList";
 import Spinner from 'react-bootstrap/Spinner';
 import { Prod } from '../productos/productos';
-const ItemListContainer = ({greeting}) => {
-    const [loader, setLoader]=useState(false);
-    const [productList, setProductList]=useState([]);
-    
+const ItemListContainer = ({ greeting }) => {
+    const [loader, setLoader] = useState(false);
+    const [productList, setProductList] = useState([]);
 
-    useEffect(()=>{
+
+    useEffect(() => {
         setLoader(true)
         Prod
-        .then((res)=> setProductList(res))
-        .catch((error)=> console.log(error))
-        .finally(()=> setLoader(false))
+            .then((res) => setProductList(res))
+            .catch((error) => console.log(error))
+            .finally(() => setLoader(false))
 
     }, [])
-    return(
-        <div>
+    return (
+        <>
             <h3>{greeting}</h3>
-            
-            {loader
-            ?<Spinner animation="border" />
-            :<ItemList productList={productList}/>}
-            
-        </div>
+            <div className="ItemListContainer">
+
+
+                {loader
+                    ? <Spinner animation="border" />
+                    : <ItemList productList={productList} />}
+
+            </div>
+        </>
+
     )
 };
 
