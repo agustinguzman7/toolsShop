@@ -1,7 +1,12 @@
-import ItemCount from './ItemCount';
-import Card from 'react-bootstrap/Card';
 
-const Item = ({title,description,price,img}) => {
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button'
+import { useNavigate } from 'react-router-dom';
+
+const Item = ({id, title, description, price, img }) => {
+
+    const navegar = useNavigate();
+
     return (
         <>
             <Card style={{ width: '18rem' }}>
@@ -17,8 +22,9 @@ const Item = ({title,description,price,img}) => {
                     <Card.Text>
                         {price}
                     </Card.Text>
-                    <ItemCount stock="5" initial={1} onAdd/>
                     
+                    <Button variant="primary" size="lg" onClick={()=>navegar(`/item/${id}`)}>
+                        Block level button</Button>
                 </Card.Body>
             </Card>
         </>
