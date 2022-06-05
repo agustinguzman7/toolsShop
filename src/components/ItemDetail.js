@@ -1,8 +1,20 @@
 import React from 'react';
+import { useState } from 'react';
 import ItemCount from "./ItemCount";
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 const ItemDetail = ({product}) => {
-    const {title,description,price,img}=product;
+    const [itemCount, setItemCount] =useState(0);
+
+    const onAdd = (Cantidad) => {
+        swal('Añadiste ' + Cantidad + ' productos a tu carrito!');;
+        setItemCount(Cantidad);
+    }
+
+    const {title,description,price,stock,img}=product;
+    
     return (
         <>
             <div className="ItemDetail" style={{ width: '90%' }}>
@@ -21,7 +33,12 @@ const ItemDetail = ({product}) => {
                     <Card.Text>
                         ${price}
                     </Card.Text>
-                    <ItemCount stock="5" initial={1} onAdd />
+                    {
+                itemCount===0
+                ?<ItemCount stock={stock} initial= {1} onAdd={onAdd}/>
+                :<Link to='/Cart'><Button variant="primary">Ir al Carrito</Button></Link>
+                }
+                    
                     
                 </Card.Body>
                 </div>

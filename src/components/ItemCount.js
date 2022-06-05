@@ -1,8 +1,11 @@
 import { Alert } from "bootstrap";
 import swal from 'sweetalert';
-import React, { useState } from "react"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const ItemCount = ({ stock, initial,  onAdd }) => {
+
+
+const ItemCount = ({ stock, initial, onAdd}) => {
     
     const [Cantidad, setCantidad] = useState(initial);
    
@@ -17,10 +20,8 @@ const ItemCount = ({ stock, initial,  onAdd }) => {
         }
         
     }
-    const Añadir = () => {
-        swal('Añadiste ' + Cantidad + ' productos a tu carrito!');
-        onAdd(Cantidad)
-    }
+    
+    
 
     return (
         <>
@@ -30,7 +31,7 @@ const ItemCount = ({ stock, initial,  onAdd }) => {
             <span >{Cantidad}</span>
             <button type="button" className="btn btn-light" onClick={RestarCantidad}>-</button>
 
-            <button type="button" className="btn btn-primary" onClick={Añadir}>Agregar al Carrito</button>
+            <button type="button" className="btn btn-primary" onClick={ () => onAdd(Cantidad)}>Agregar al Carrito</button>
 
             </div>
         </>
