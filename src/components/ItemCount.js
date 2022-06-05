@@ -20,7 +20,7 @@ const ItemCount = ({ stock, initial, onAdd}) => {
         }
         
     }
-    
+    im
     
 
     return (
