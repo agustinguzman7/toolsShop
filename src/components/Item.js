@@ -24,7 +24,7 @@ const Item = ({id, title, description, price, img }) => {
                     </Card.Text>
                     
                     <Button variant="primary" size="lg" onClick={()=>navegar(`/item/${id}`)}>
-                        Block level button</Button>
+                        Ver mas!</Button>
                 </Card.Body>
             </Card>
         </>

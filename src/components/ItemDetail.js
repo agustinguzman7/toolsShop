@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import ItemCount from "./ItemCount";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import { CartContext } from './CartContext';
 const ItemDetail = ({product}) => {
     const [itemCount, setItemCount] =useState(0);
+    const [Cantidad, setCantidad] = useState(1);
+
+    const test = useContext(CartContext);
 
     const onAdd = (Cantidad) => {
-        swal('Añadiste ' + Cantidad + ' productos a tu carrito!');;
-        setItemCount(Cantidad);
+        swal('Añadiste ' + Cantidad + ' productos a tu carrito!');
+        setItemCount(product);
+        test.addToCart(product, Cantidad);
+        
     }
 
     const {title,description,price,stock,img}=product;
@@ -35,8 +41,8 @@ const ItemDetail = ({product}) => {
                     </Card.Text>
                     {
                 itemCount===0
-                ?<ItemCount stock={stock} initial= {1} onAdd={onAdd}/>
-                :<Link to='/Cart'><Button variant="primary">Ir al Carrito</Button></Link>
+                ?<ItemCount stock={stock} Cantidad = {Cantidad} setCantidad = {setCantidad} initial={1} onAdd={onAdd}/>
+                :<Link to='/cart'><Button variant="primary">Ir al Carrito</Button></Link>
                 }
                     
                     
