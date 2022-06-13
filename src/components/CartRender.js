@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 const CartRender = ({id,title,price,quantity,img}) => {
     
-    const { removeItem } = useContext(CartContext);
+    const { removeItem, calcTotalPerItem } = useContext(CartContext);
 
     const removeId = () => {
         removeItem(id);
@@ -19,6 +19,7 @@ const CartRender = ({id,title,price,quantity,img}) => {
                 <div>{title}</div>
                 <div>Cantidad: {quantity}</div>
                 <div>Precio: ${price}</div>
+                <div>Subtotal: ${calcTotalPerItem(id)}</div>
                 <button type="button" onClick={removeId}>Borrar Item</button>
             </div>
         </div>
