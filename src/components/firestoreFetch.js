@@ -2,10 +2,10 @@ import { query, orderBy, where, collection, getDocs } from '@firebase/firestore'
 import { doc, getDoc } from "firebase/firestore";
 import db from './firabaseConfig';
 
-export const firestoreFetch = async (idcategory) => {
+export const firestoreFetch = async (category) => {
     let q;
-    if (idcategory) {
-        q = query(collection(db, "productList"), where('category', '==', parseInt(idcategory)));
+    if (category) {
+        q = query(collection(db, "productList"), where('category', '==', category));
     } else {
         q = query(collection(db, "productList"), orderBy('title'));
     }
@@ -17,16 +17,16 @@ export const firestoreFetch = async (idcategory) => {
     return dataFromFirestore;
 }
 
-export const firestoreFetchOne = async (idItem) => {
-    const docRef = doc(db, "productList", idItem);
-    const docSnap = await getDoc(docRef);
+//export const firestoreFetchOne = async (id) => {
+//    const docRef = doc(db, "productList", id);
+//    const docSnap = await getDoc(docRef);
     
-    if (docSnap.exists()) {
-        return {
-            id: idItem,
-            ...docSnap.data()
-        }
-    } else {
-    console.log("El documento no existe");
-    }
-}
+//    if (docSnap.exists()) {
+//        return {
+//            id: id,
+//            ...docSnap.data()
+ //       }
+//} else {
+//console.log("El documento no existe");
+ //   }
+//}

@@ -4,6 +4,10 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Prod } from '../productos/productos';
 import { useParams } from "react-router-dom";
 import { firestoreFetchOne } from "../components/firestoreFetch";
+
+import { getFirestore } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+
 const ItemDetailContainer = () => {
     
     const [product, setProduct] = useState([]);
@@ -11,10 +15,18 @@ const ItemDetailContainer = () => {
 
 
     useEffect(() => {
-        firestoreFetchOne(id)
-            .then(result => setProduct(result))
-            .catch(err => console.log(err));
-    }, [id]);
+
+        const db = getFirestore();
+    
+        const productRef = doc(db, "productList", id);
+    
+        getDoc(productRef)
+    
+          .then((doc) => setProduct({ id: doc.id, ...doc.data() }))
+    
+          .catch(error=> console.log(error))
+    
+      }, [id]);
     return (
         <>
             
