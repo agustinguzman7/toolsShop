@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "../components/ItemList";
 import Spinner from 'react-bootstrap/Spinner';
-import { Prod } from '../productos/productos';
+
 import { useParams } from "react-router-dom";
+import { firestoreFetch } from "../components/firestoreFetch";
 const ItemListContainer = ({ greeting }) => {
     const [loader, setLoader] = useState(false);
     const [productList, setProductList] = useState([]);
     const {category} = useParams()
 
     useEffect(() => {
-        setLoader(true)
-        
-        Prod
-            .then((res) => {
-                if (category === undefined) {
-                    setProductList(res)
-                } else {
-                    setProductList(res.filter((item)=> item.category === category))
-                }
-            })
-            .catch((error) => console.log(error))
-            .finally(() => setLoader(false))
-            
+        firestoreFetch(category)
+            .then(result => setProductList(result))
+            .catch(err => console.log(err));
+    }, [category]);
 
-    }, [category])
+    //componentWillUnmount
+    useEffect(() => {
+        return (() => {
+            setProductList([]);
+        })
+    }, []);
 
     return (
         <>

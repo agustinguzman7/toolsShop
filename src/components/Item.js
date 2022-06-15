@@ -1,11 +1,11 @@
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Item = ({id, title, description, price, img }) => {
 
-    const navegar = useNavigate();
+    
 
     return (
         <>
@@ -22,9 +22,9 @@ const Item = ({id, title, description, price, img }) => {
                     <Card.Text>
                         {price}
                     </Card.Text>
+                    <Link to={`/item/${id}`}><Button variant="primary" size="lg">
+                        Ver mas!</Button></Link>
                     
-                    <Button variant="primary" size="lg" onClick={()=>navegar(`/item/${id}`)}>
-                        Ver mas!</Button>
                 </Card.Body>
             </Card>
         </>

@@ -3,29 +3,25 @@ import ItemDetail from '../components/ItemDetail'
 import Spinner from 'react-bootstrap/Spinner';
 import { Prod } from '../productos/productos';
 import { useParams } from "react-router-dom";
+import { firestoreFetchOne } from "../components/firestoreFetch";
 const ItemDetailContainer = () => {
-    const [loader, setLoader] = useState(false);
+    
     const [product, setProduct] = useState([]);
-    const { id } = useParams()
+    const {id} = useParams()
 
 
     useEffect(() => {
-        setLoader(true)
-        Prod
-            .then((res) => setProduct(res.find((item) => item.id === id )))
-            .catch((error) => console.log(error))
-            .finally(() => setLoader(false))
-
-    }, [])
+        firestoreFetchOne(id)
+            .then(result => setProduct(result))
+            .catch(err => console.log(err));
+    }, [id]);
     return (
         <>
             
             <div className="ItemListContainer">
 
 
-                {loader
-                    ? <Spinner animation="border" />
-                    : <ItemDetail product={product} />}
+                <ItemDetail product={product} />}
 
             </div>
         </>
