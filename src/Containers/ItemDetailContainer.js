@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from '../components/ItemDetail'
-import Spinner from 'react-bootstrap/Spinner';
-import { Prod } from '../productos/productos';
 import { useParams } from "react-router-dom";
-import { firestoreFetchOne } from "../components/firestoreFetch";
 
 import { getFirestore } from "firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";

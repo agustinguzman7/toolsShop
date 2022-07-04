@@ -19,7 +19,33 @@
   flex-direction: row;
 
 }
-
+.Cart{
+  display:inline-block;
+  padding: 5%;
+  border: 2px solid black;
+}
+.BotonesCart{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+}
+.CartRender{
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  
+}
+.ImgRenderCart {
+  height: 300px;
+}
+.checkout{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

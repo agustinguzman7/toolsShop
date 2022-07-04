@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# ToolsShop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una tienda online de herramientas varias. Fue desarrollada mientras cursaba el curso de REACT en CODERHOUSE. La tienda permite ver el catalogo de productos, cargarlos al carrito y realizar el pedido de compra. No tiene enlace para finalizar el pago.
 
 ## Available Scripts
 
